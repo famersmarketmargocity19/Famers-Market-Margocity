@@ -360,6 +360,21 @@ footer span{color:var(--gl)}
   opacity:1 !important;
   transform:scale(1) translateY(0) !important;
 }
+/* ══ FIX: Chat input selalu bisa diketik — QR landing maupun normal ══ */
+#chatInput{
+  pointer-events:auto !important;
+  user-select:text !important;
+  -webkit-user-select:text !important;
+  touch-action:manipulation !important;
+  -webkit-tap-highlight-color:rgba(82,183,136,.2);
+}
+/* ══ FIX: Hero search bisa diketik langsung ══ */
+#heroSearch{
+  pointer-events:auto !important;
+  user-select:text !important;
+  -webkit-user-select:text !important;
+  touch-action:manipulation !important;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head>
 <body>
@@ -390,8 +405,8 @@ footer span{color:var(--gl)}
 
 
 <!-- ══ SIDEBAR ══ -->
-<div id="menuOverlay" onclick="closeSidebar()" class=""></div>
-<div id="sidebar" class="">
+<div id="menuOverlay" onclick="closeSidebar()"></div>
+<div id="sidebar">
   <div class="sidebar-header">
     <img src="data:image/png;base64,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" alt="Logo">
     <div class="sidebar-header-text"><div class="sh-title">Farmers Market 99</div><div class="sh-sub">fresh and friendly</div></div>
@@ -456,10 +471,10 @@ footer span{color:var(--gl)}
 
       <!-- BIG SEARCH + PHOTO -->
       <div class="big-search-wrap" style="margin-top:0">
-        <div class="big-search-box chat-trigger" onclick="openChatSearch()" ontouchend="event.preventDefault();openChatSearch()" style="cursor:pointer">
-          <input type="text" id="heroSearch" placeholder="Ketik nama barang, Erlangga siap bantu cari! 🛒" readonly="" style="cursor:pointer" onclick="event.stopPropagation();openChatSearch()" ontouchend="event.preventDefault();event.stopPropagation();openChatSearch()">
+        <div class="big-search-box" id="heroSearchBox" style="border-color: var(--gl);">
+          <input type="text" id="heroSearch" placeholder="Ketik nama barang, Erlangga siap bantu cari! 🛒" autocomplete="off" style="cursor:text" onkeydown="if(event.key==='Enter'){event.preventDefault();heroSearchGo();}" onfocus="heroSearchFocus()" oninput="heroSearchFocus()">
           <div class="search-btns">
-            <button class="big-search-btn" onclick="event.stopPropagation();openChatSearch()" ontouchend="event.preventDefault();event.stopPropagation();openChatSearch()">Cari 🔍</button>
+            <button class="big-search-btn" onclick="event.preventDefault();event.stopPropagation();heroSearchGo()" ontouchend="event.preventDefault();event.stopPropagation();heroSearchGo()">Cari 🔍</button>
           </div>
         </div>
         <div class="search-chat-hint">💬 Dibantu oleh <span>Erlangga AI</span> · Klik untuk mulai cari</div>
@@ -473,12 +488,12 @@ footer span{color:var(--gl)}
 
 <!-- ══ BANNER SLIDER ══ -->
 <div class="hero-slider">
-  <div class="slides" id="slides" style="transform: translateX(-200%);">
+  <div class="slides" id="slides" style="transform: translateX(-100%);">
     <div class="slide slide-1"><div class="slide-badge">🎟️ BlibliTiket Rewards</div><h2>Sekarang Dapat<br>Digunakan di<br>Farmers Market!</h2><p>Tukar poin BlibliTiket rewards Anda di semua cabang.</p><button class="slide-cta" onclick="document.getElementById('ranch').scrollIntoView({behavior:'smooth'})">Pelajari Lebih</button><div class="slide-emoji">🛍️</div></div>
     <div class="slide slide-2"><div class="slide-badge">🥦 Produk Segar</div><h2>Fresh Every Day,<br>Delivered to You</h2><p>Sayuran organik, buah impor, dan daging segar pilihan.</p><button class="slide-cta" onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Lihat Produk</button><div class="slide-emoji">🌿</div></div>
     <div class="slide slide-3"><div class="slide-badge">💥 Promo Bulan Ini</div><h2>Cashback Bank<br>Hingga Rp 300.000!</h2><p>Belanja dengan kartu bank pilihan dan nikmati cashback.</p><button class="slide-cta" onclick="document.getElementById('promo').scrollIntoView({behavior:'smooth'})">Cek Promo</button><div class="slide-emoji">💰</div></div>
   </div>
-  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot active" onclick="goSlide(2)"></button></div>
+  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot active" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
 </div>
 
 <!-- ══ BIODATA ══ -->
@@ -565,7 +580,7 @@ footer span{color:var(--gl)}
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 10.30.56</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 10.41.43</span>
     </div>
 
     <div class="stats-grid">
@@ -9462,6 +9477,27 @@ function openChatSearch(){
     if(inp){inp.focus();}
   },300);
 }
+/* Buka chat langsung dengan teks dari hero search box */
+function heroSearchGo(){
+  var inp=document.getElementById('heroSearch');
+  var txt=inp?inp.value.trim():'';
+  openChatSearch();
+  if(txt){
+    setTimeout(function(){
+      var ci=document.getElementById('chatInput');
+      if(ci){ci.value=txt;}
+      setTimeout(function(){sendChat();},100);
+    },350);
+    if(inp)inp.value='';
+  }
+}
+/* Saat user mulai ketik / fokus di hero search, buka chat */
+function heroSearchFocus(){
+  var inp=document.getElementById('heroSearch');
+  var box=document.getElementById('heroSearchBox');
+  if(box){box.style.borderColor='var(--gl)';}
+  /* Tidak langsung buka chat agar user bisa ketik dulu */
+}
 function initChatSearch(){
   addBotMsg("Halo! 👋 Saya **Erlangga**, asisten belanja AI.\n\nKetik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒");
   setTimeout(()=>{showQuick(["🥩 Daging & Ikan","🥦 Sayur & Buah","🥛 Susu & Dairy","🍚 Makanan Pokok","🧴 Perawatan Diri"]);document.getElementById("chatInput").focus();},800);
@@ -9878,6 +9914,7 @@ window.addEventListener("scroll",()=>{
    ══════════════════════════════════════ */
 
 const ADMIN_CREDS = { user: 'admin', pass: 'fa2025admin' };
+const VISITOR_CREDS = { user: 'visitor', pass: 'visitor2025' };
 let isAdminLoggedIn = false;
 let adminChatLog = [];
 let _adminLogging = false; /* guard flag — prevents infinite loop */
@@ -9900,7 +9937,9 @@ function closeAdminLogin(){
 function submitAdminLogin(){
   const u=document.getElementById('adminUsernameInput').value.trim();
   const p=document.getElementById('adminPasswordInput').value.trim();
-  if(u===ADMIN_CREDS.user&&p===ADMIN_CREDS.pass){
+  const isAdmin=(u===ADMIN_CREDS.user&&p===ADMIN_CREDS.pass);
+  const isVisitor=(u===VISITOR_CREDS.user&&p===VISITOR_CREDS.pass);
+  if(isAdmin||isVisitor){
     isAdminLoggedIn=true;saveAdminSession();
     closeAdminLogin();
     document.getElementById('adminPasswordInput').value='';
@@ -10421,19 +10460,26 @@ function cancelDBPreview(){
   document.getElementById('dbUploadStatus').innerHTML='<span style="color:var(--txt3)">Upload dibatalkan.</span>';
 }
 
+/* ═══ QR BANNER HELPERS - global scope ═══ */
+window.qlbCari=function(){
+  var b=document.getElementById('qrLandingBanner');
+  if(b)b.style.display='none';
+  function _doOpen(){
+    if(typeof openChatSearch==='function'){openChatSearch();return true;}
+    return false;
+  }
+  if(!_doOpen()){
+    var att=0;
+    var _t=setInterval(function(){att++;if(_doOpen()||att>20)clearInterval(_t);},200);
+  }
+};
+window.qlbTutup=function(){
+  var b=document.getElementById('qrLandingBanner');
+  if(b)b.style.display='none';
+};
+
 /* Drag and drop support untuk drop zone */
 (function(){
-  
-/* ═══ QR BANNER HELPERS - global scope ═══ */
-function qlbCari(){
-  var b=document.getElementById('qrLandingBanner');
-  if(b)b.style.display='none';
-  if(typeof openChatSearch==='function')openChatSearch();
-}
-function qlbTutup(){
-  var b=document.getElementById('qrLandingBanner');
-  if(b)b.style.display='none';
-}
 
 document.addEventListener('DOMContentLoaded',function(){
     var zone=document.getElementById('dbDropZone');
@@ -11379,5 +11425,5 @@ async function saveAndPublish(){
 
 
 <div id="hapusGantiOverlay" style="position: fixed; inset: 0px; z-index: 999999; background: rgba(0, 0, 0, 0.75); display: none; align-items: center; justify-content: center; padding: 1.5rem;"><div style="background:var(--card);border-radius:18px;padding:1.8rem 1.5rem;max-width:320px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:1px solid rgba(59,130,246,.4)"><div style="font-size:2.5rem;margin-bottom:.6rem">🔄</div><div style="font-size:1rem;font-weight:700;color:#60a5fa;margin-bottom:.5rem">Ganti Semua Database?</div><div style="font-size:.78rem;color:var(--txt2);margin-bottom:1.3rem;line-height:1.5">Database lama akan <b>dihapus seluruhnya</b> dan diganti dengan <b>16063 data baru</b> dari file yang diupload. Lanjutkan?</div><div style="display:flex;gap:.6rem;justify-content:center"><button id="gantiYes" style="background:#1d4ed8;color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;flex:1">Ya, Ganti Semua</button><button id="gantiNo" style="background:var(--card2);color:var(--txt);border:1px solid var(--border);border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer;flex:1">Batal</button></div></div></div>
-<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">✅ Config tersimpan!</div>
+<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">✅ Jadwal per hari tersimpan!</div>
 </body></html>
