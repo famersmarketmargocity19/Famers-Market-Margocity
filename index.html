@@ -343,55 +343,23 @@ footer span{color:var(--gl)}
   -webkit-user-select:none;
 }
 
-/* ══ FIX CHATBOT: Pastikan chatFab & chatWindow selalu di atas semua elemen ══ */
-#chatFab{
-  z-index:10001 !important;
-  pointer-events:auto !important;
-  visibility:visible !important;
-  display:flex !important;
-  position:fixed !important;
-}
-#chatWindow{
-  z-index:10000 !important;
-  position:fixed !important;
-}
-#chatWindow.open{
-  pointer-events:auto !important;
-  opacity:1 !important;
-  transform:scale(1) translateY(0) !important;
-}
-/* ══ FIX: Chat input selalu bisa diklik & diketik di mobile ══ */
-#chatInput{
-  pointer-events:auto !important;
-  -webkit-user-select:text !important;
-  user-select:text !important;
-  touch-action:manipulation !important;
-  -webkit-tap-highlight-color:rgba(82,183,136,.2);
-  cursor:text !important;
-}
-/* ══ FIX: Chat messages area lebih tinggi agar hasil cari terlihat ══ */
-.chat-msgs{
-  max-height:360px !important;
-}
-/* ══ FIX: Hero search input tidak readonly ══ */
-#heroSearch{
-  pointer-events:auto !important;
-  -webkit-user-select:text !important;
-  user-select:text !important;
-  touch-action:manipulation !important;
-  cursor:text !important;
-}
-/* ══ FIX: Chat window lebih tinggi di mobile ══ */
-@media(max-width:480px){
-  #chatWindow{max-height:80vh !important;}
-  .chat-msgs{max-height:calc(80vh - 180px) !important;}
-}
+/* ══ FIX CHATBOT: Semua elemen chat selalu di atas ══ */
+#chatFab{z-index:10001!important;pointer-events:auto!important;visibility:visible!important;display:flex!important;position:fixed!important;}
+#chatWindow{z-index:10000!important;position:fixed!important;max-height:85vh!important;}
+#chatWindow.open{pointer-events:auto!important;opacity:1!important;transform:scale(1) translateY(0)!important;}
+/* ══ FIX: Chat messages lebih tinggi agar hasil cari kelihatan ══ */
+.chat-msgs{max-height:380px!important;}
+@media(max-width:480px){.chat-msgs{max-height:calc(85vh - 200px)!important;}}
+/* ══ FIX: Chat input selalu bisa diketik ══ */
+#chatInput{pointer-events:auto!important;-webkit-user-select:text!important;user-select:text!important;touch-action:manipulation!important;cursor:text!important;}
+/* ══ FIX: Hero search bisa diketik langsung ══ */
+#heroSearch{pointer-events:auto!important;-webkit-user-select:text!important;user-select:text!important;touch-action:manipulation!important;cursor:text!important;}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head>
 <body>
 
 <!-- ══ SCROLL TOP ══ -->
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="show">↑</button>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <!-- ══ CHAT FAB ══ -->
 <button id="chatFab" onclick="toggleChat()">🤖<div class="fab-badge">AI</div></button>
@@ -482,13 +450,13 @@ footer span{color:var(--gl)}
 
       <!-- BIG SEARCH + PHOTO -->
       <div class="big-search-wrap" style="margin-top:0">
-        <div class="big-search-box" id="heroSearchBox" style="cursor:text">
-          <input type="text" id="heroSearch" placeholder="Ketik nama barang, Erlangga siap bantu cari! 🛒" autocomplete="off" autocorrect="off" spellcheck="false" style="cursor:text;pointer-events:auto;-webkit-user-select:text;user-select:text" onfocus="_heroOnFocus()" oninput="_heroOnFocus()" onkeydown="if(event.key==='Enter'){event.preventDefault();_heroGo();}">
+        <div class="big-search-box" id="heroSearchBox">
+          <input type="text" id="heroSearch" placeholder="Ketik nama barang, Erlangga siap bantu cari! 🛒" autocomplete="off" style="cursor:text" onclick="_openChat()" ontouchstart="_openChat()" onfocus="_openChat()" onkeydown="if(event.key==='Enter'){event.preventDefault();_heroGo();}">
           <div class="search-btns">
-            <button class="big-search-btn" onclick="event.preventDefault();event.stopPropagation();_heroGo()" ontouchend="event.preventDefault();event.stopPropagation();_heroGo()">Cari 🔍</button>
+            <button class="big-search-btn" onclick="event.preventDefault();_heroGo()" ontouchend="event.preventDefault();_heroGo()">Cari 🔍</button>
           </div>
         </div>
-        <div class="search-chat-hint">💬 Dibantu oleh <span>Erlangga AI</span> · Klik &amp; ketik untuk mulai cari</div>
+        <div class="search-chat-hint">💬 Dibantu oleh <span>Erlangga AI</span> · Klik untuk mulai cari</div>
       </div>
     </div>
 
@@ -499,12 +467,12 @@ footer span{color:var(--gl)}
 
 <!-- ══ BANNER SLIDER ══ -->
 <div class="hero-slider">
-  <div class="slides" id="slides" style="transform: translateX(-200%);">
+  <div class="slides" id="slides" style="transform: translateX(0%);">
     <div class="slide slide-1"><div class="slide-badge">🎟️ BlibliTiket Rewards</div><h2>Sekarang Dapat<br>Digunakan di<br>Farmers Market!</h2><p>Tukar poin BlibliTiket rewards Anda di semua cabang.</p><button class="slide-cta" onclick="document.getElementById('ranch').scrollIntoView({behavior:'smooth'})">Pelajari Lebih</button><div class="slide-emoji">🛍️</div></div>
     <div class="slide slide-2"><div class="slide-badge">🥦 Produk Segar</div><h2>Fresh Every Day,<br>Delivered to You</h2><p>Sayuran organik, buah impor, dan daging segar pilihan.</p><button class="slide-cta" onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Lihat Produk</button><div class="slide-emoji">🌿</div></div>
     <div class="slide slide-3"><div class="slide-badge">💥 Promo Bulan Ini</div><h2>Cashback Bank<br>Hingga Rp 300.000!</h2><p>Belanja dengan kartu bank pilihan dan nikmati cashback.</p><button class="slide-cta" onclick="document.getElementById('promo').scrollIntoView({behavior:'smooth'})">Cek Promo</button><div class="slide-emoji">💰</div></div>
   </div>
-  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot active" onclick="goSlide(2)"></button></div>
+  <div class="slider-dots"><button class="sdot active" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
 </div>
 
 <!-- ══ BIODATA ══ -->
@@ -591,7 +559,7 @@ footer span{color:var(--gl)}
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 11.02.05</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 11.07.57</span>
     </div>
 
     <div class="stats-grid">
@@ -9465,77 +9433,56 @@ function _detectCat(t){
 }
 
 /* ── MAIN CHAT FUNCTIONS ── */
-function openChatSearch(){
+/* ── Buka chatbot (safe, bisa dipanggil kapan saja) ── */
+function _openChat(){
   var win=document.getElementById('chatWindow');
   if(!win)return;
-  var isQrLanding=(window.location.hash==='#cari'||window.location.hash==='#search');
   if(!chatOpen){
     chatOpen=true;
     win.classList.add('open');
     if(chatHistory.length===0){
-      if(isQrLanding){
-        addBotMsg("Halo! 👋 Selamat datang di **Farmers Market 99**!\n\nSaya **Erlangga**, asisten cari barang AI.\n\nKetik nama produk yang ingin dicari — saya langsung carikan lorongnya! 🛒");
-        setTimeout(function(){
-          showQuick(["🥩 Daging & Ikan","🥦 Sayur & Buah","🥛 Susu & Dairy","🍚 Makanan Pokok","🧴 Perawatan Diri"]);
-          var ci=document.getElementById('chatInput');if(ci)ci.focus();
-        },800);
+      var isQR=(window.location.hash==='#cari'||window.location.hash==='#search');
+      if(isQR){
+        addBotMsg("Halo! 👋 Selamat datang di **Farmers Market 99**!\n\nSaya **Erlangga**, asisten cari barang AI.\n\nKetik nama produk — saya carikan lorongnya! 🛒");
+        setTimeout(function(){showQuick(["🥩 Daging & Ikan","🥦 Sayur & Buah","🥛 Susu & Dairy","🍚 Makanan Pokok","🧴 Perawatan Diri"]);},800);
       }else{
         initChatSearch();
       }
     }
   }else{
-    /* Chat sudah terbuka — pastikan visible */
     win.classList.add('open');
   }
   setTimeout(function(){
-    var inp=document.getElementById('chatInput');
-    if(inp){inp.removeAttribute('disabled');inp.removeAttribute('readonly');inp.focus();}
-  },350);
+    var ci=document.getElementById('chatInput');
+    if(ci){ci.removeAttribute('disabled');ci.removeAttribute('readonly');ci.focus();}
+  },400);
 }
+function openChatSearch(){_openChat();}
 
-/* ── Hero search: buka chat saat user fokus/ketik ── */
-function _heroOnFocus(){
-  var box=document.getElementById('heroSearchBox');
-  if(box)box.style.borderColor='var(--gl)';
-  /* Buka chat jika belum terbuka */
-  if(!chatOpen){
-    openChatSearch();
-  }
-}
-
-/* ── Hero search: kirim ke chat saat tekan Enter/Cari ── */
+/* ── Hero search: tekan Enter atau tombol Cari ── */
 function _heroGo(){
   var inp=document.getElementById('heroSearch');
   var txt=inp?inp.value.trim():'';
-  /* Pastikan chat terbuka dulu */
-  if(!chatOpen){
-    openChatSearch();
-    if(txt){
-      setTimeout(function(){_sendToChat(txt);if(inp)inp.value='';},700);
-    }
-  }else{
-    if(txt){_sendToChat(txt);if(inp)inp.value='';}
-    else{
-      var ci=document.getElementById('chatInput');if(ci)ci.focus();
-    }
+  _openChat();
+  if(txt){
+    var delay=chatHistory.length===0?900:200;
+    setTimeout(function(){
+      var msgs=document.getElementById('chatMsgs');
+      if(msgs&&msgs.children.length===0){
+        addBotMsg("Halo! 👋 Saya **Erlangga**. Mencari barang untuk Anda...");
+        delay=600;
+      }
+      setTimeout(function(){
+        addUserMsg(txt);
+        document.getElementById('quickBtns').innerHTML='';
+        handleChat(txt);
+        if(inp)inp.value='';
+        var m=document.getElementById('chatMsgs');
+        if(m)m.scrollTop=m.scrollHeight;
+      },delay);
+    },100);
+    if(inp)inp.value='';
   }
-}
-
-/* ── Kirim teks langsung ke chatbot ── */
-function _sendToChat(txt){
-  /* Pastikan greeting sudah ada */
-  var msgs=document.getElementById('chatMsgs');
-  if(msgs&&msgs.children.length===0){
-    addBotMsg("Halo! 👋 Saya **Erlangga**, asisten belanja AI.\n\nKetik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒");
-  }
-  setTimeout(function(){
-    addUserMsg(txt);
-    document.getElementById('quickBtns').innerHTML='';
-    handleChat(txt);
-    /* Scroll ke bawah */
-    var msgs2=document.getElementById('chatMsgs');
-    if(msgs2)msgs2.scrollTop=msgs2.scrollHeight;
-  },msgs&&msgs.children.length===0?900:100);
 }
 function initChatSearch(){
   addBotMsg("Halo! 👋 Saya **Erlangga**, asisten belanja AI.\n\nKetik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒");
@@ -9976,11 +9923,15 @@ function closeAdminLogin(){
 function submitAdminLogin(){
   const u=document.getElementById('adminUsernameInput').value.trim();
   const p=document.getElementById('adminPasswordInput').value.trim();
-  if((u===ADMIN_CREDS.user&&p===ADMIN_CREDS.pass)||(u===VISITOR_CREDS.user&&p===VISITOR_CREDS.pass)){
+  const ok=(u===ADMIN_CREDS.user&&p===ADMIN_CREDS.pass)||(u===VISITOR_CREDS.user&&p===VISITOR_CREDS.pass);
+  if(ok){
     isAdminLoggedIn=true;saveAdminSession();closeAdminLogin();
     document.getElementById('adminPasswordInput').value='';document.getElementById('adminUsernameInput').value='';
     openAdminPanel();
-  }else{document.getElementById('adminLoginErr').textContent='❌ Username atau password salah!';document.getElementById('adminPasswordInput').value='';}
+  }else{
+    document.getElementById('adminLoginErr').textContent='❌ Username atau password salah!';
+    document.getElementById('adminPasswordInput').value='';
+  }
 }
 
 /* ── Panel ── */
@@ -10496,8 +10447,8 @@ function cancelDBPreview(){
 window.qlbCari=function(){
   var b=document.getElementById('qrLandingBanner');
   if(b)b.style.display='none';
-  function _try(){if(typeof openChatSearch==='function'){openChatSearch();return true;}return false;}
-  if(!_try()){var a=0;var t=setInterval(function(){a++;if(_try()||a>20)clearInterval(t);},200);}
+  function _try(){if(typeof _openChat==='function'){_openChat();return true;}return false;}
+  if(!_try()){var a=0,t=setInterval(function(){a++;if(_try()||a>25)clearInterval(t);},200);}
 };
 window.qlbTutup=function(){
   var b=document.getElementById('qrLandingBanner');
@@ -11451,7 +11402,5 @@ async function saveAndPublish(){
 
 
 <div id="hapusGantiOverlay" style="position: fixed; inset: 0px; z-index: 999999; background: rgba(0, 0, 0, 0.75); display: none; align-items: center; justify-content: center; padding: 1.5rem;"><div style="background:var(--card);border-radius:18px;padding:1.8rem 1.5rem;max-width:320px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:1px solid rgba(59,130,246,.4)"><div style="font-size:2.5rem;margin-bottom:.6rem">🔄</div><div style="font-size:1rem;font-weight:700;color:#60a5fa;margin-bottom:.5rem">Ganti Semua Database?</div><div style="font-size:.78rem;color:var(--txt2);margin-bottom:1.3rem;line-height:1.5">Database lama akan <b>dihapus seluruhnya</b> dan diganti dengan <b>16063 data baru</b> dari file yang diupload. Lanjutkan?</div><div style="display:flex;gap:.6rem;justify-content:center"><button id="gantiYes" style="background:#1d4ed8;color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;flex:1">Ya, Ganti Semua</button><button id="gantiNo" style="background:var(--card2);color:var(--txt);border:1px solid var(--border);border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer;flex:1">Batal</button></div></div></div>
-<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">❌ Publish gagal: Upload gagal (HTTP 409): {
-  "message": "index.html does not match e866d2cb0ab4fc2e5e3bc62d63032b59425bc6a6",
-  "documentatio</div>
+<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">✅ Jadwal per hari tersimpan!</div>
 </body></html>
