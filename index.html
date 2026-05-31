@@ -472,12 +472,12 @@ footer span{color:var(--gl)}
 
 <!-- ══ BANNER SLIDER ══ -->
 <div class="hero-slider">
-  <div class="slides" id="slides" style="transform: translateX(-200%);">
+  <div class="slides" id="slides" style="transform: translateX(0%);">
     <div class="slide slide-1"><div class="slide-badge">🎟️ BlibliTiket Rewards</div><h2>Sekarang Dapat<br>Digunakan di<br>Farmers Market!</h2><p>Tukar poin BlibliTiket rewards Anda di semua cabang.</p><button class="slide-cta" onclick="document.getElementById('ranch').scrollIntoView({behavior:'smooth'})">Pelajari Lebih</button><div class="slide-emoji">🛍️</div></div>
     <div class="slide slide-2"><div class="slide-badge">🥦 Produk Segar</div><h2>Fresh Every Day,<br>Delivered to You</h2><p>Sayuran organik, buah impor, dan daging segar pilihan.</p><button class="slide-cta" onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">Lihat Produk</button><div class="slide-emoji">🌿</div></div>
     <div class="slide slide-3"><div class="slide-badge">💥 Promo Bulan Ini</div><h2>Cashback Bank<br>Hingga Rp 300.000!</h2><p>Belanja dengan kartu bank pilihan dan nikmati cashback.</p><button class="slide-cta" onclick="document.getElementById('promo').scrollIntoView({behavior:'smooth'})">Cek Promo</button><div class="slide-emoji">💰</div></div>
   </div>
-  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot active" onclick="goSlide(2)"></button></div>
+  <div class="slider-dots"><button class="sdot active" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
 </div>
 
 <!-- ══ BIODATA ══ -->
@@ -564,7 +564,7 @@ footer span{color:var(--gl)}
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 15.21.58</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 15.34.11</span>
     </div>
 
     <div class="stats-grid">
@@ -16731,7 +16731,7 @@ const database=[
 {nama:'TESSA NAPK PERAK EMBOS TN - 08',lorong:'',rak:'1',kat:'TOOTHPASTE',sub:'TOOTHPASTE KIDS',id:'30008896',gtin:'4891338003209'},
 {nama:'TESSA TERRA NON PERF TP-02 PAK',lorong:'',rak:'1',kat:'TOOTHPASTE',sub:'TOOTHPASTE KIDS',id:'30008893',gtin:'4891338003186'},
 {nama:'TESSA TOILET TISSUE TOT-04 PAK',lorong:'',rak:'1',kat:'TOOTHPASTE',sub:'TOOTHPASTE KIDS',id:'30012701',gtin:'9555019004897'},
-{nama:'WHISKAS TUNA 80GR PCH',lorong:'',rak:'1',kat:'TOOTHPASTE',sub:'TOOTHPASTE KIDS',id:'30011300',gtin:'9555019004569'},
+{nama:'WHISKAS TUNA 80GR PCH',lorong:'',rak:'1',kat:'TOOTHPASTE',sub:'TOOTHPASTE KIDS',id:'30011300',gtin:'9555019004569'}
 ];
 
 /* ══ SEARCH ══ */
@@ -18834,11 +18834,37 @@ async function saveAndPublish(){
   pubLog('Memulai deploy ke GitHub Pages…','var(--txt2)');
 
   try{
-    /* ── Generate HTML BERSIH untuk customer (tanpa kode admin) ── */
-    const fullHtml = document.documentElement.outerHTML;
+    /* ── Generate HTML BERSIH untuk customer ── */
+    /* FIXED: Gunakan originalHTML dari script tag, bukan outerHTML dari DOM aktif */
+    /* Ini mencegah state admin panel (open/tertutup) ikut terpublish */
+
+    /* Ambil HTML original dari source file via fetch (lebih bersih dari outerHTML) */
+    let fullHtml;
+    try {
+      const selfResp = await fetch(window.location.href);
+      if (selfResp.ok) {
+        fullHtml = await selfResp.text();
+        pubLog('✅ Menggunakan source HTML original…','#4ade80');
+      } else { throw new Error('fetch failed'); }
+    } catch(fetchErr) {
+      /* Fallback ke outerHTML jika fetch gagal */
+      fullHtml = document.documentElement.outerHTML;
+      pubLog('⚠️ Menggunakan DOM snapshot (fallback)…','#fbbf24');
+    }
+
+    /* Inject database terbaru dari memory ke HTML source */
+    /* (database bisa berubah lewat admin edit tanpa reload) */
+    if(typeof database !== 'undefined' && database.length > 0) {
+      const dbStr = 'const database=[\n' +
+        database.map(function(d){
+          function esc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+          return '{nama:\''+esc(d.nama)+'\',lorong:\''+esc(d.lorong)+'\',rak:\''+esc(d.rak)+'\',kat:\''+esc(d.kat)+'\',sub:\''+esc(d.sub||'')+'\',id:\''+esc(d.id||'')+'\',gtin:\''+esc(d.gtin||'')+'\'}'
+        }).join(',\n') + '\n];';
+      fullHtml = fullHtml.replace(/const database=\[[\s\S]*?\];/m, dbStr);
+      pubLog('✅ Database terbaru ('+database.length+' produk) diinjeksi…','#4ade80');
+    }
 
     /* Strip JS admin: hapus dari @@ADMIN_JS_START@@ sampai @@ADMIN_JS_END@@ */
-    /* NOTE: @@SECRET_JS_START/END@@ sengaja TIDAK dihapus agar tap logo tetap bisa buka admin */
     let cleanHtml = fullHtml.replace(
       /\/\* @@ADMIN_JS_START@@ \*\/[\s\S]*?\/\* @@ADMIN_JS_END@@ \*\//g,
       '/* visitor mode */'
@@ -18846,7 +18872,7 @@ async function saveAndPublish(){
 
     /* Strip HTML admin: hapus panel tapi LOGIN MODAL tetap ada (untuk tap logo) */
     cleanHtml = cleanHtml.replace(
-      /<!-- @@ADMIN_PANEL_START@@ -->[\s\S]*?<!-- @@ADMIN_HTML_END@@ -->/g,
+      //g,
       ''
     );
     /* Hapus juga ADMIN_HTML_START comment tapi biarkan isinya (login modal) */
