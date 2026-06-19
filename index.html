@@ -8,19 +8,19 @@
 <body>
 
 
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="show">↑</button>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="">↑</button>
 
 
 <button id="chatFab" onclick="toggleChat()">🤖<div class="fab-badge">AI</div></button>
 
 
-<div id="chatWindow" class="">
+<div id="chatWindow">
   <div class="chat-head">
     <div class="chat-head-avatar">🛒</div>
     <div class="chat-head-info"><div class="chi-name">Erlangga – Asisten AI</div><div class="chi-status"><span class="chi-dot"></span>Online sekarang</div></div>
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
-  <div class="chat-msgs" id="chatMsgs"><div class="msg bot">Halo! 👋 Saya <b>Erlangga</b>, asisten belanja AI.<br><br>Ketik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒</div></div>
+  <div class="chat-msgs" id="chatMsgs"></div>
   <div class="chat-quick" id="quickBtns"></div>
   <div class="chat-input-row">
     <input type="text" id="chatInput" placeholder="Ketik pertanyaan..." onkeydown="if(event.key==='Enter')sendChat()">
@@ -116,8 +116,8 @@
 
 
 <div class="hero-slider" style="display: none;">
-  <div class="slides" id="slides" style="transform: translateX(0%);"></div>
-  <div class="slider-dots"><button class="sdot active" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
+  <div class="slides" id="slides" style="transform: translateX(-100%);"></div>
+  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot active" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
 </div>
 
 
@@ -153,12 +153,18 @@
     <h2 class="sec-title">Promo &amp; Acara</h2>
     <p class="sec-sub">Penawaran menarik di semua cabang Farmers Market 99</p>
     <div class="promo-scroll">
-      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#d4f1e4,#52b788)">💳<div class="promo-disc-badge">CASHBACK</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Promo Bank Cashback</div><div style="font-size:.75rem;color:var(--txt2)">Cashback hingga Rp 300.000 dengan kartu bank pilihan</div><div class="promo-date">📅 01–31 Mei 2026</div></div></div>
-      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#fde8d8,#e05c2a)">🍳<div class="promo-disc-badge">DISC 70%</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Shop &amp; Get Reward</div><div style="font-size:.75rem;color:var(--txt2)">Beli KitchenAid &amp; diskon spesial 70%</div><div class="promo-date">📅 01 Mar – 31 Mei 2026</div></div></div>
-      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#e0f0ff,#2d9cdb)">🥩<div class="promo-disc-badge">DISC 20%</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Fresh Protein Sale</div><div style="font-size:.75rem;color:var(--txt2)">Diskon 20% daging, ayam &amp; ikan segar</div><div class="promo-date">📅 s/d 31 Mei 2026</div></div></div>
-      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#fef3c7,#f59e0b)">🎪<div class="promo-disc-badge">EVENT</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Weekend Harvest</div><div style="font-size:.75rem;color:var(--txt2)">Festival belanja akhir pekan harga spesial</div><div class="promo-date">📅 Setiap Sabtu &amp; Minggu</div></div></div>
-    </div>
-    <p style="font-size:.7rem;color:var(--txt3);text-align:center;margin-top:.8rem;letter-spacing:.06em">← GESER UNTUK LIHAT LEBIH BANYAK →</p>
+    <div class="promo-card2">
+      <div class="promo-img" style="background:linear-gradient(135deg,#d4f1e4,#52b788)">
+        💳
+        <div class="promo-disc-badge">CASHBACK</div>
+      </div>
+      <div class="promo-body">
+        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Promo Bank Cashback</div>
+        <div style="font-size:.75rem;color:var(--txt2)">Cashback hingga Rp 300.000 dengan kartu bank pilihan</div>
+        <div class="promo-date">📅 01–31 Mei 2026</div>
+      </div>
+    </div></div>
+    <p style="font-size: 0.7rem; color: var(--txt3); text-align: center; margin-top: 0.8rem; letter-spacing: 0.06em; display: none;">← GESER UNTUK LIHAT LEBIH BANYAK →</p>
   </div>
 </div>
 
@@ -193,7 +199,7 @@
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 15.06.30</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 15.15.26</span>
     </div>
 
     <div class="stats-grid">
