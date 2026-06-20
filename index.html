@@ -43,11 +43,11 @@
   <div class="sidebar-menu">
     <a href="#biodata" class="sidebar-item active" onclick="closeSidebar()"><span class="si-icon">🏢</span><div><div class="si-label">Biodata Perusahaan</div><div class="si-desc">Tentang Farmers Market 99</div></div></a>
     <div class="sidebar-divider"></div>
-    <span id="sb-produk-wrap" style="display: none;"><a href="#produk" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🛒</span><div><div class="si-label">Produk</div><div class="si-desc">Kategori produk segar kami</div></div></a>
+    <span id="sb-produk-wrap" style=""><a href="#produk" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🛒</span><div><div class="si-label">Produk</div><div class="si-desc">Kategori produk segar kami</div></div></a>
     <div class="sidebar-divider"></div></span>
-    <span id="sb-promo-wrap" style="display: none;"><a href="#promo" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🎉</span><div><div class="si-label">Promo &amp; Acara</div><div class="si-desc">Penawaran &amp; event terkini</div></div></a>
+    <span id="sb-promo-wrap" style=""><a href="#promo" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🎉</span><div><div class="si-label">Promo &amp; Acara</div><div class="si-desc">Penawaran &amp; event terkini</div></div></a>
     <div class="sidebar-divider"></div></span>
-    <span id="sb-ranch-wrap" style="display: none;"><a href="#ranch" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🤝</span><div><div class="si-label">Ranch by BlibliTiket</div><div class="si-desc">Program rewards eksklusif</div></div></a>
+    <span id="sb-ranch-wrap" style=""><a href="#ranch" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🤝</span><div><div class="si-label">Ranch by BlibliTiket</div><div class="si-desc">Program rewards eksklusif</div></div></a>
     <div class="sidebar-divider"></div></span>
     <a href="#hubungi" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">📞</span><div><div class="si-label">Hubungi Kami</div><div class="si-desc">WhatsApp, Instagram, TikTok</div></div></a>
     <div class="sidebar-divider"></div>
@@ -117,9 +117,9 @@
 </section>
 
 
-<div class="hero-slider" style="display: none;">
-  <div class="slides" id="slides" style="transform: translateX(-100%);"></div>
-  <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot active" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
+<div class="hero-slider" style="">
+  <div class="slides" id="slides" style="transform: translateX(0%);"><div class="slide slide-1"><div class="slide-badge">🎟️ BlibliTiket Rewards</div><h2>Sekarang Dapat<br>Digunakan di<br>Farmers Market!</h2><p>Tukar poin BlibliTiket rewards Anda di semua cabang.</p><button class="slide-cta" onclick="document.getElementById(&quot;ranch&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Pelajari Lebih</button><div class="slide-emoji">🛍️</div></div><div class="slide slide-2"><div class="slide-badge">🥦 Produk Segar</div><h2>Fresh Every Day,<br>Delivered to You</h2><p>Sayuran organik, buah impor, dan daging segar pilihan.</p><button class="slide-cta" onclick="document.getElementById(&quot;produk&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Lihat Produk</button><div class="slide-emoji">🌿</div></div><div class="slide slide-3"><div class="slide-badge">💥 Promo Bulan Ini</div><h2>Cashback Bank<br>Hingga Rp 300.000!</h2><p>Belanja dengan kartu bank pilihan dan nikmati cashback.</p><button class="slide-cta" onclick="document.getElementById(&quot;promo&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Cek Promo</button><div class="slide-emoji">💰</div></div></div>
+  <div class="slider-dots"><button class="sdot active" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot" onclick="goSlide(2)"></button></div>
 </div>
 
 
@@ -139,28 +139,72 @@
 </div>
 
 
-<div class="sec-wrap bg-light" id="produk" style="display: none;">
+<div class="sec-wrap bg-light" id="produk" style="">
   <div class="sec-inner">
     <div class="sec-eyebrow">Produk Kami</div>
     <h2 class="sec-title">Produk</h2>
     <p class="sec-sub">Produk segar tersedia setiap hari untuk Anda</p>
-    <div class="product-scroll"></div>
+    <div class="product-scroll"><div class="prod-card"><div class="prod-img">🥩</div><div class="prod-body"><div class="prod-cat">Meat &amp; Seafood</div><div class="prod-name">Daging &amp; Ikan</div><div class="prod-desc">Protein segar pilihan setiap hari...</div><button class="prod-plus">+</button></div></div><div class="prod-card"><div class="prod-img">🥛</div><div class="prod-body"><div class="prod-cat">Dairy &amp; Frozen</div><div class="prod-name">Susu &amp; Beku</div><div class="prod-desc">Dairy &amp; frozen berkualitas tinggi...</div><button class="prod-plus">+</button></div></div><div class="prod-card"><div class="prod-img">🍚</div><div class="prod-body"><div class="prod-cat">Food</div><div class="prod-name">Makanan Pokok</div><div class="prod-desc">Lengkapi kebutuhan dapur Anda...</div><button class="prod-plus">+</button></div></div><div class="prod-card"><div class="prod-img">🥦</div><div class="prod-body"><div class="prod-cat">Sayur &amp; Buah</div><div class="prod-name">Fresh Produce</div><div class="prod-desc">Organik &amp; buah impor pilihan...</div><button class="prod-plus">+</button></div></div><div class="prod-card"><div class="prod-img">🧴</div><div class="prod-body"><div class="prod-cat">Personal Care</div><div class="prod-name">Perawatan Diri</div><div class="prod-desc">Produk kebersihan &amp; perawatan...</div><button class="prod-plus">+</button></div></div></div>
   </div>
 </div>
 
 
-<div class="sec-wrap" id="promo" style="display: none;">
+<div class="sec-wrap" id="promo" style="">
   <div class="sec-inner">
     <div class="sec-eyebrow">Promo Bulan Ini</div>
     <h2 class="sec-title">Promo &amp; Acara</h2>
     <p class="sec-sub">Penawaran menarik di semua cabang Farmers Market 99</p>
-    <div class="promo-scroll"></div>
+    <div class="promo-scroll">
+    <div class="promo-card2" style="animation-delay:0s">
+      <div class="promo-img" style="background:linear-gradient(135deg,#d4f1e4,#52b788)">
+        💳
+        <div class="promo-disc-badge">CASHBACK</div>
+      </div>
+      <div class="promo-body">
+        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Promo Bank Cashback</div>
+        <div style="font-size:.75rem;color:var(--txt2)">Cashback hingga Rp 300.000 dengan kartu bank pilihan</div>
+        <div class="promo-date">📅 01–31 Mei 2026</div>
+      </div>
+    </div>
+    <div class="promo-card2" style="animation-delay:0.06s">
+      <div class="promo-img" style="background:linear-gradient(135deg,#fde8d8,#e05c2a)">
+        🍳
+        <div class="promo-disc-badge">DISC 70%</div>
+      </div>
+      <div class="promo-body">
+        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Shop &amp; Get Reward</div>
+        <div style="font-size:.75rem;color:var(--txt2)">Beli KitchenAid &amp; diskon spesial 70%</div>
+        <div class="promo-date">📅 01 Mar – 31 Mei 2026</div>
+      </div>
+    </div>
+    <div class="promo-card2" style="animation-delay:0.12s">
+      <div class="promo-img" style="background:linear-gradient(135deg,#e0f0ff,#2d9cdb)">
+        🥩
+        <div class="promo-disc-badge">DISC 20%</div>
+      </div>
+      <div class="promo-body">
+        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Fresh Protein Sale</div>
+        <div style="font-size:.75rem;color:var(--txt2)">Diskon 20% daging, ayam &amp; ikan segar</div>
+        <div class="promo-date">📅 s/d 31 Mei 2026</div>
+      </div>
+    </div>
+    <div class="promo-card2" style="animation-delay:0.18s">
+      <div class="promo-img" style="background:linear-gradient(135deg,#fef3c7,#f59e0b)">
+        🎪
+        <div class="promo-disc-badge">EVENT</div>
+      </div>
+      <div class="promo-body">
+        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Weekend Harvest</div>
+        <div style="font-size:.75rem;color:var(--txt2)">Festival belanja akhir pekan harga spesial</div>
+        <div class="promo-date">📅 Setiap Sabtu &amp; Minggu</div>
+      </div>
+    </div></div>
     <p style="font-size:.7rem;color:var(--txt3);text-align:center;margin-top:.8rem;letter-spacing:.06em">← GESER UNTUK LIHAT LEBIH BANYAK →</p>
   </div>
 </div>
 
 
-<div class="sec-wrap bg-light" id="ranch" style="display: none;">
+<div class="sec-wrap bg-light" id="ranch" style="">
   <div class="sec-inner">
     <div class="sec-eyebrow">Partner Eksklusif</div>
     <h2 class="sec-title">Ranch by BlibliTiket</h2>
@@ -190,7 +234,7 @@
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 00.59.52</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 01.01.18</span>
     </div>
 
     <div class="stats-grid">
@@ -17038,7 +17082,7 @@ function pub3_stripAdminFromHtml(html){html=html.replace(/<div[^>]+id=["']adminP
 
 
 <div id="hapusGantiOverlay" style="position: fixed; inset: 0px; z-index: 999999; background: rgba(0, 0, 0, 0.75); display: none; align-items: center; justify-content: center; padding: 1.5rem;"><div style="background:var(--card);border-radius:18px;padding:1.8rem 1.5rem;max-width:320px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:1px solid rgba(59,130,246,.4)"><div style="font-size:2.5rem;margin-bottom:.6rem">🔄</div><div style="font-size:1rem;font-weight:700;color:#60a5fa;margin-bottom:.5rem">Ganti Semua Database?</div><div style="font-size:.78rem;color:var(--txt2);margin-bottom:1.3rem;line-height:1.5">Database lama akan <b>dihapus seluruhnya</b> dan diganti dengan <b>16063 data baru</b> dari file yang diupload. Lanjutkan?</div><div style="display:flex;gap:.6rem;justify-content:center"><button id="gantiYes" style="background:#1d4ed8;color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;flex:1">Ya, Ganti Semua</button><button id="gantiNo" style="background:var(--card2);color:var(--txt);border:1px solid var(--border);border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer;flex:1">Batal</button></div></div></div>
-<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">✅ Jadwal per hari tersimpan!</div>
+<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">✅ Promo berhasil diperbarui! (4 aktif)</div>
 
 <script>
 /* ══ SAFETY: Ensure chatbot always works after publish ══ */
