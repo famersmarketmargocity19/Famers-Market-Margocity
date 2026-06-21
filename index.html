@@ -8,7 +8,7 @@
 <body>
 
 
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="show">↑</button>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="">↑</button>
 
 
 <button id="chatFab" onclick="toggleChat()">🤖<div class="fab-badge">AI</div></button>
@@ -20,7 +20,7 @@
     <div class="chat-head-info"><div class="chi-name">Erlangga – Asisten AI</div><div class="chi-status"><span class="chi-dot"></span>Online sekarang</div></div>
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
-  <div class="chat-msgs" id="chatMsgs"><div class="msg bot">Halo! 👋 Saya <b>Erlangga</b>, asisten belanja AI.<br><br>Ketik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒</div><div class="msg bot">Halo! 👋 Saya <b>Erlangga</b>, asisten belanja AI.<br><br>Ketik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒</div></div>
+  <div class="chat-msgs" id="chatMsgs"><div class="msg bot">Halo! 👋 Saya <b>Erlangga</b>, asisten belanja AI.<br><br>Ketik nama barang yang ingin dicari — saya langsung carikan lorongnya! 🛒</div></div>
   <div class="chat-quick" id="quickBtns"></div>
   <div class="chat-input-row">
     <input type="text" id="chatInput" placeholder="Ketik pertanyaan..." onkeydown="if(event.key==='Enter')sendChat()">
@@ -43,11 +43,11 @@
   <div class="sidebar-menu">
     <a href="#biodata" class="sidebar-item active" onclick="closeSidebar()"><span class="si-icon">🏢</span><div><div class="si-label">Biodata Perusahaan</div><div class="si-desc">Tentang Farmers Market 99</div></div></a>
     <div class="sidebar-divider"></div>
-    <span id="sb-produk-wrap" style=""><a href="#produk" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🛒</span><div><div class="si-label">Produk</div><div class="si-desc">Kategori produk segar kami</div></div></a>
+    <span id="sb-produk-wrap" style="display:none"><a href="#produk" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🛒</span><div><div class="si-label">Produk</div><div class="si-desc">Kategori produk segar kami</div></div></a>
     <div class="sidebar-divider"></div></span>
-    <span id="sb-promo-wrap" style=""><a href="#promo" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🎉</span><div><div class="si-label">Promo &amp; Acara</div><div class="si-desc">Penawaran &amp; event terkini</div></div></a>
+    <span id="sb-promo-wrap" style="display:none"><a href="#promo" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🎉</span><div><div class="si-label">Promo &amp; Acara</div><div class="si-desc">Penawaran &amp; event terkini</div></div></a>
     <div class="sidebar-divider"></div></span>
-    <span id="sb-ranch-wrap" style=""><a href="#ranch" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🤝</span><div><div class="si-label">Ranch by BlibliTiket</div><div class="si-desc">Program rewards eksklusif</div></div></a>
+    <span id="sb-ranch-wrap" style="display:none"><a href="#ranch" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">🤝</span><div><div class="si-label">Ranch by BlibliTiket</div><div class="si-desc">Program rewards eksklusif</div></div></a>
     <div class="sidebar-divider"></div></span>
     <a href="#hubungi" class="sidebar-item" onclick="closeSidebar()"><span class="si-icon">📞</span><div><div class="si-label">Hubungi Kami</div><div class="si-desc">WhatsApp, Instagram, TikTok</div></div></a>
     <div class="sidebar-divider"></div>
@@ -117,8 +117,8 @@
 </section>
 
 
-<div class="hero-slider" style="">
-  <div class="slides" id="slides" style="transform: translateX(-200%);"><div class="slide slide-1"><div class="slide-badge">🎟️ BlibliTiket Rewards</div><h2>Sekarang Dapat<br>Digunakan di<br>Farmers Market!</h2><p>Tukar poin BlibliTiket rewards Anda di semua cabang.</p><button class="slide-cta" onclick="document.getElementById(&quot;ranch&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Pelajari Lebih</button><div class="slide-emoji">🛍️</div></div><div class="slide slide-2"><div class="slide-badge">🥦 Produk Segar</div><h2>Fresh Every Day,<br>Delivered to You</h2><p>Sayuran organik, buah impor, dan daging segar pilihan.</p><button class="slide-cta" onclick="document.getElementById(&quot;produk&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Lihat Produk</button><div class="slide-emoji">🌿</div></div><div class="slide slide-3"><div class="slide-badge">💥 Promo Bulan Ini</div><h2>Cashback Bank<br>Hingga Rp 300.000!</h2><p>Belanja dengan kartu bank pilihan dan nikmati cashback.</p><button class="slide-cta" onclick="document.getElementById(&quot;promo&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Cek Promo</button><div class="slide-emoji">💰</div></div></div>
+<div class="hero-slider" style="display: none;">
+  <div class="slides" id="slides" style="transform: translateX(-200%);"></div>
   <div class="slider-dots"><button class="sdot" onclick="goSlide(0)"></button><button class="sdot" onclick="goSlide(1)"></button><button class="sdot active" onclick="goSlide(2)"></button></div>
 </div>
 
@@ -139,7 +139,7 @@
 </div>
 
 
-<div class="sec-wrap bg-light" id="produk" style="">
+<div class="sec-wrap bg-light" id="produk" style="display:none;">
   <div class="sec-inner">
     <div class="sec-eyebrow">Produk Kami</div>
     <h2 class="sec-title">Produk</h2>
@@ -149,62 +149,23 @@
 </div>
 
 
-<div class="sec-wrap" id="promo" style="">
+<div class="sec-wrap" id="promo" style="display: none;">
   <div class="sec-inner">
     <div class="sec-eyebrow">Promo Bulan Ini</div>
     <h2 class="sec-title">Promo &amp; Acara</h2>
     <p class="sec-sub">Penawaran menarik di semua cabang Farmers Market 99</p>
     <div class="promo-scroll">
-    <div class="promo-card2" style="animation-delay:0s">
-      <div class="promo-img" style="background:linear-gradient(135deg,#d4f1e4,#52b788)">
-        💳
-        <div class="promo-disc-badge">CASHBACK</div>
-      </div>
-      <div class="promo-body">
-        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Promo Bank Cashback</div>
-        <div style="font-size:.75rem;color:var(--txt2)">Cashback hingga Rp 300.000 dengan kartu bank pilihan</div>
-        <div class="promo-date">📅 01–31 Mei 2026</div>
-      </div>
+      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#d4f1e4,#52b788)">💳<div class="promo-disc-badge">CASHBACK</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Promo Bank Cashback</div><div style="font-size:.75rem;color:var(--txt2)">Cashback hingga Rp 300.000 dengan kartu bank pilihan</div><div class="promo-date">📅 01–31 Mei 2026</div></div></div>
+      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#fde8d8,#e05c2a)">🍳<div class="promo-disc-badge">DISC 70%</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Shop &amp; Get Reward</div><div style="font-size:.75rem;color:var(--txt2)">Beli KitchenAid &amp; diskon spesial 70%</div><div class="promo-date">📅 01 Mar – 31 Mei 2026</div></div></div>
+      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#e0f0ff,#2d9cdb)">🥩<div class="promo-disc-badge">DISC 20%</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Fresh Protein Sale</div><div style="font-size:.75rem;color:var(--txt2)">Diskon 20% daging, ayam &amp; ikan segar</div><div class="promo-date">📅 s/d 31 Mei 2026</div></div></div>
+      <div class="promo-card2"><div class="promo-img" style="background:linear-gradient(135deg,#fef3c7,#f59e0b)">🎪<div class="promo-disc-badge">EVENT</div></div><div class="promo-body"><div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Weekend Harvest</div><div style="font-size:.75rem;color:var(--txt2)">Festival belanja akhir pekan harga spesial</div><div class="promo-date">📅 Setiap Sabtu &amp; Minggu</div></div></div>
     </div>
-    <div class="promo-card2" style="animation-delay:0.06s">
-      <div class="promo-img" style="background:linear-gradient(135deg,#fde8d8,#e05c2a)">
-        🍳
-        <div class="promo-disc-badge">DISC 70%</div>
-      </div>
-      <div class="promo-body">
-        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Shop &amp; Get Reward</div>
-        <div style="font-size:.75rem;color:var(--txt2)">Beli KitchenAid &amp; diskon spesial 70%</div>
-        <div class="promo-date">📅 01 Mar – 31 Mei 2026</div>
-      </div>
-    </div>
-    <div class="promo-card2" style="animation-delay:0.12s">
-      <div class="promo-img" style="background:linear-gradient(135deg,#e0f0ff,#2d9cdb)">
-        🥩
-        <div class="promo-disc-badge">DISC 20%</div>
-      </div>
-      <div class="promo-body">
-        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Fresh Protein Sale</div>
-        <div style="font-size:.75rem;color:var(--txt2)">Diskon 20% daging, ayam &amp; ikan segar</div>
-        <div class="promo-date">📅 s/d 31 Mei 2026</div>
-      </div>
-    </div>
-    <div class="promo-card2" style="animation-delay:0.18s">
-      <div class="promo-img" style="background:linear-gradient(135deg,#fef3c7,#f59e0b)">
-        🎪
-        <div class="promo-disc-badge">EVENT</div>
-      </div>
-      <div class="promo-body">
-        <div style="font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:var(--txt)">Weekend Harvest</div>
-        <div style="font-size:.75rem;color:var(--txt2)">Festival belanja akhir pekan harga spesial</div>
-        <div class="promo-date">📅 Setiap Sabtu &amp; Minggu</div>
-      </div>
-    </div></div>
     <p style="font-size:.7rem;color:var(--txt3);text-align:center;margin-top:.8rem;letter-spacing:.06em">← GESER UNTUK LIHAT LEBIH BANYAK →</p>
   </div>
 </div>
 
 
-<div class="sec-wrap bg-light" id="ranch" style="">
+<div class="sec-wrap bg-light" id="ranch" style="display:none;">
   <div class="sec-inner">
     <div class="sec-eyebrow">Partner Eksklusif</div>
     <h2 class="sec-title">Ranch by BlibliTiket</h2>
@@ -234,7 +195,7 @@
         <span class="dot" style="background:#4ade80;width:6px;height:6px"></span>LIVE
       </span>
       <span id="onlineCount" style="font-size:.78rem;color:var(--txt3)">1 pengunjung sedang online</span>
-      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 13.22.11</span>
+      <span id="lastUpdated" style="font-size:.7rem;color:var(--txt3);margin-left:auto">Diperbarui: 13.30.45</span>
     </div>
 
     <div class="stats-grid">
@@ -17082,7 +17043,7 @@ function pub3_stripAdminFromHtml(html){html=html.replace(/<div[^>]+id=["']adminP
 
 
 <div id="hapusGantiOverlay" style="position: fixed; inset: 0px; z-index: 999999; background: rgba(0, 0, 0, 0.75); display: none; align-items: center; justify-content: center; padding: 1.5rem;"><div style="background:var(--card);border-radius:18px;padding:1.8rem 1.5rem;max-width:320px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);border:1px solid rgba(59,130,246,.4)"><div style="font-size:2.5rem;margin-bottom:.6rem">🔄</div><div style="font-size:1rem;font-weight:700;color:#60a5fa;margin-bottom:.5rem">Ganti Semua Database?</div><div style="font-size:.78rem;color:var(--txt2);margin-bottom:1.3rem;line-height:1.5">Database lama akan <b>dihapus seluruhnya</b> dan diganti dengan <b>16063 data baru</b> dari file yang diupload. Lanjutkan?</div><div style="display:flex;gap:.6rem;justify-content:center"><button id="gantiYes" style="background:#1d4ed8;color:#fff;border:none;border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;flex:1">Ya, Ganti Semua</button><button id="gantiNo" style="background:var(--card2);color:var(--txt);border:1px solid var(--border);border-radius:10px;padding:.7rem 1.3rem;font-family:'Outfit',sans-serif;font-size:.88rem;cursor:pointer;flex:1">Batal</button></div></div></div>
-<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">🎉 Website sudah LIVE!</div>
+<div id="admToast" style="position: fixed; top: 80px; right: 16px; z-index: 99999; background: var(--g); color: rgb(255, 255, 255); padding: 0.7rem 1.2rem; border-radius: 12px; font-size: 0.83rem; font-weight: 600; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 24px; transition: opacity 0.4s; pointer-events: none; opacity: 0;">⚠️ Semua slide nonaktif, banner slider disembunyikan</div>
 
 <script>
 /* ══ SAFETY: Ensure chatbot always works after publish ══ */
@@ -17195,35 +17156,24 @@ function pub3_stripAdminFromHtml(html){html=html.replace(/<div[^>]+id=["']adminP
 </script>
 
 <script>
-/* ══ SECTION VISIBILITY & AUTO-INIT ══
-   Sebelumnya section produk/promo/ranch selalu display:none saat halaman
-   pertama dibuka, dan baru tampil kalau admin masuk panel lalu klik
-   toggle/Terapkan. Sekarang semua section dirender otomatis saat load
-   berdasarkan state aktif masing-masing (adminSlides/adminProducts/ranchActive),
-   sehingga toggle ON/OFF benar-benar berefek ke pengunjung biasa. */
-(function(){
-  function initVisibleSections(){
-    // Banner Slider — render slide yang aktif, sembunyikan slider kalau semua off
-    if(typeof saveSlider==='function'){ try{ saveSlider(); }catch(e){} }
-    // Kartu Produk — render kartu yang aktif
-    if(typeof saveProducts==='function'){ try{ saveProducts(); }catch(e){} }
-    // Kartu Promo — render promo yang aktif (section promo selalu tampil)
-    if(typeof savePromos==='function'){ try{ savePromos(); }catch(e){} }
-    // Ranch by BlibliTiket — tampil/sembunyikan sesuai toggle ranchActive
-    if(typeof applyRanchVisibility==='function'){ try{ applyRanchVisibility(); }catch(e){} }
-    // Pastikan section produk & promo (section pembungkus) selalu terlihat;
-    // isi di dalamnya yang diatur oleh toggle per-item di atas.
-    var produkSec=document.getElementById('produk'); if(produkSec) produkSec.style.display='';
-    var promoSec=document.getElementById('promo'); if(promoSec) promoSec.style.display='';
-    var sbProduk=document.getElementById('sb-produk-wrap'); if(sbProduk) sbProduk.style.display='';
-    var sbPromo=document.getElementById('sb-promo-wrap'); if(sbPromo) sbPromo.style.display='';
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',initVisibleSections);
-  }else{
-    initVisibleSections();
-  }
-})();
+/* ══ SECTION VISIBILITY ══ */
+const SECTIONS = ['produk','promo','ranch','statistik'];
+function getSectionState(id){var s=localStorage.getItem('sec_'+id);return s===null?false:s==='1';}
+function setSectionState(id,on){localStorage.setItem('sec_'+id,on?'1':'0');}
+function applySection(id,on){
+  var sec=document.getElementById(id);if(sec)sec.style.display=on?'':'none';
+  var sb=document.getElementById('sb-'+id+'-wrap');if(sb)sb.style.display=on?'':'none';
+  var track=document.getElementById('tog-'+id+'-track');
+  var thumb=document.getElementById('tog-'+id+'-thumb');
+  var chk=document.getElementById('tog-'+id);
+  if(track)track.style.background=on?'#1e6b47':'#555';
+  if(thumb)thumb.style.transform=on?'translateX(20px)':'translateX(0)';
+  if(chk)chk.checked=on;
+}
+function toggleSection(id,on){setSectionState(id,on);applySection(id,on);}
+function syncToggles(){SECTIONS.forEach(function(id){applySection(id,getSectionState(id));});}
+// Apply section states on page load
+(function(){SECTIONS.forEach(function(id){applySection(id,getSectionState(id));});})();
 </script>
 
 <script>
